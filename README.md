@@ -2,6 +2,11 @@
 
 详细的解析看：
 
+知乎： https://zhuanlan.zhihu.com/p/460012052
+
+微信公众号： https://mp.weixin.qq.com/s/7OvXkjx_txVpEYumJVj_AA
+
+
 # 开始
 
 ```
@@ -21,6 +26,22 @@ else:
 # dev: 单个进程，只在一张卡上面运行
 valid_dataset = LazyDataset(dev_dataset_path)
 valid_loader = DataLoader(hparams, collate_fn=collate_fn, is_train=False, dataset=valid_dataset)
+
+
+############# train loader usage ###############
+
+train_iter = iter(train_loader)
+while True:
+    if self.steps == self.total_steps + 1:
+                break
+    batch, batch_size = next(train_iter)
+    ...
+    
+
+############# dev loader usage ###############
+for batch, batch_size in valid_loader:
+    ...
+
 
 ```
 
