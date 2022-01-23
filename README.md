@@ -47,5 +47,17 @@ for batch, batch_size in valid_loader:
 
 ```
 
+# tips
+
+在debug的时候，因为我们开启了多进程，有时候程序报错后，这些进程还是没有被关掉，一直在循环占着内存，为此我们可以手动批量关一下，比如
+```
+ps -ef | grep python3 | awk '{if($8~/python3$/) print $2}'|xargs kill -9
+```
+当然了，根据自己的start适当的改一改脚本即可。
+
+
+
+
+
 
 
