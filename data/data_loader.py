@@ -100,13 +100,12 @@ class DataLoader(object):
                 # 装到当前epcoh最后一个数据了
                 if read_count >= num_data:
                     break
-
+                start_idx = dataset_idx_list[read_count]
                 read_count += 1
                 # 多个进程互不影响，确保不重复装数据
                 if read_count % num_process != process:  # skip
                     continue
                 self.read_count_global.value = read_count
-                start_idx = dataset_idx_list[read_count]
                 # 一个个装对应位置的数据
                 f_read.seek(start_idx, 0)
                 self.buffer_single.append(json.loads(f_read.readline().strip()))
